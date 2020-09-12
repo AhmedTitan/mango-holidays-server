@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         roomName: "RM4",
-        propertyId: 1,
+        propertyId: 2,
         amenities: "Sea view, Bathtub, Balcony, Floor area(m2), Wifi",
         numberOfGuests: 3,
         BB: 27.0,
@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         roomName: "RM5",
-        propertyId: 1,
+        propertyId: 2,
         amenities: "Sea view, Bathtub, Balcony, Floor area(m2), Wifi",
         numberOfGuests: 2,
         BB: 22.0,
@@ -50,7 +50,7 @@ module.exports = {
       },
       {
         roomName: "RM6",
-        propertyId: 1,
+        propertyId: 2,
         amenities: "Sea view, Bathtub, Balcony, Floor area(m2), Wifi",
         numberOfGuests: 1,
         BB: 15.0,
@@ -59,7 +59,7 @@ module.exports = {
       },
       {
         roomName: "RM7",
-        propertyId: 1,
+        propertyId: 3,
         amenities: "Mountain view, Bathtub, Balcony, Floor area(m2), Wifi",
         numberOfGuests: 3,
         BB: 27.0,
@@ -68,7 +68,7 @@ module.exports = {
       },
       {
         roomName: "RM8",
-        propertyId: 1,
+        propertyId: 3,
         amenities: "Mountain view, Bathtub, Balcony, Floor area(m2), Wifi",
         numberOfGuests: 2,
         BB: 22.0,
@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         roomName: "RM9",
-        propertyId: 1,
+        propertyId: 3,
         amenities: "Mountain view, Bathtub, Balcony, Floor area(m2), Wifi",
         numberOfGuests: 1,
         BB: 15.0,

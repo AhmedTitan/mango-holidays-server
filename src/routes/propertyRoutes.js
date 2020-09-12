@@ -10,7 +10,7 @@ router.get("/", propertyController.allProperties);
 
 router.get("/details", propertyController.propertyDetails);
 
-router.get("/details-by-property", propertyController.propertyById);
+router.get("/:propertyId", propertyController.propertyById);
 
 router.get("/room", propertyController.getRoobById);
 
