@@ -15,6 +15,21 @@ export const propertyDetails = async (req, res) => {
   }
 };
 
+export const allProperties = async (req, res) => {
+  try {
+    const properties = await models.property.findAll();
+
+    if (properties.length) {
+      return res.send({ message: "data fetched successfully", data: properties });
+    } else {
+      return res.status(400).send({ message: "Unable to find any details" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error });
+  }
+};
+
 export const getRoobById = async (req, res) => {
   try {
     const { roomId } = req.body;
@@ -58,5 +73,6 @@ export const propertyById = async (req, res) => {
 export default {
   propertyDetails,
   getRoobById,
-  propertyById
+  propertyById,
+  allProperties
 };

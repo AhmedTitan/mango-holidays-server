@@ -6,6 +6,8 @@ const router = express.Router(); // Define Express Router
 //----------------------Authenticated routes-------------------
 
 // Route implementations
+router.get("/", propertyController.allProperties);
+
 router.get("/details", propertyController.propertyDetails);
 
 router.get("/details-by-property", propertyController.propertyById);
