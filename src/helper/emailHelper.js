@@ -1,7 +1,6 @@
 import { sendMailPromise } from "../common/mail";
 
 export const sendReservationEmail = async (data, email) => {
-  console.log(data, email);
   try {
     let mailOptions = {
       from: "tempEmail@gmail.com", //Please add a working email address to test this

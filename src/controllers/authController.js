@@ -1,4 +1,5 @@
 import models from "../models";
+import { generateJwt } from './../common/jwtFunctions';
 
 const register = async (req, res) => {
   try {
@@ -22,7 +23,8 @@ const register = async (req, res) => {
       password,
       contactNumber,
     });
-    return res.send({ message: "User Created" });
+    const token = generateJwt(newUser.id);
+    return res.send({ message: "User Created", token });
   } catch (error) {
     console.log(error);
     res.status(500).send({ error });
@@ -40,7 +42,8 @@ export const login = async (req, res) => {
     });
     if (user) {
       if (password === user.password) {
-        return res.send({ message: "Login successful" });
+        const token = generateJwt(user.id);
+        return res.send({ message: "Login successful", token });
       }
       return res.status(400).send({ message: "Invalid Password" });
     }
