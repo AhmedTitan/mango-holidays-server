@@ -12,4 +12,6 @@ router.get(`/`, (req, res) => {
 //auth & register routes implementations
 router.use(`${baseUrlV1}/auth`, require("./authRoutes"));
 
+router.use(`${baseUrlV1}/property`, require("./propertyRoutes"));
+
 export default router;
