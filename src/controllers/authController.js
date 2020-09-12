@@ -29,6 +29,29 @@ const register = async (req, res) => {
   }
 };
 
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await models.user.findOne({
+      where: {
+        email,
+      },
+      attributes: ["id", "password"],
+    });
+    if (user) {
+      if (password === user.password) {
+        return res.send({ message: "Login successful" });
+      }
+      return res.status(400).send({ message: "Invalid Password" });
+    }
+    return res.status(400).send({ message: "Invalid email address" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error });
+  }
+};
+
 export default {
   register,
+  login,
 };

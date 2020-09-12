@@ -8,4 +8,6 @@ const router = express.Router(); // Define Express Router
 // Route implementations
 router.post("/register", authController.register);
 
+router.post("/login", authController.login);
+
 module.exports = router;
