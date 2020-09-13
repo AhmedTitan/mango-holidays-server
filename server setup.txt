@@ -1,0 +1,32 @@
+Server setup
+--------------------------------------
+Backend: nodejs
+Database: mysql
+
+>> Run 'npm i' to install the packages
+>> Create a database -> name 'mangoholidaysdb'
+>> Set the DB configurations in the '/src/config/config.js' file
+>> Navigate to '/src' folder to run DB migration commands
+	-> 'set NODE_ENV=dev' to set the node env
+	-> 'npx sequelize-cli db:migrate' This command will create the tables
+	-> 'npx sequelize-cli db:seed:all' This command will seed initial data
+>> Used nodemailer to send emails. to test emails, Add a valid email address and password in the 'src/common/mail.js' 
+	and 'src/helper/emailHelper.js'
+>> Navigate back to root folder and run 'npm start'
+
+
+Completed functionalities
+--------------------------------------
+>> user Authentication
+>> Authorization for reservation routes
+>> Authorization useing JWT tokens (express middleware used to validate the token)
+>> Signup and Signin routes
+>> Send email after the resevation created.
+>> Sequelize ORM used for the DB models.
+>> Other required routes to fetch property details
+
+
+Pending functionalities
+--------------------------------------
+>> Room availability
+>> Cancellation and canellation fee

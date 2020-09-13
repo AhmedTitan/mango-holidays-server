@@ -1,24 +1,44 @@
-import express from "express";
-import { checkToken } from "../middlewares/jwtValidation";
+"use strict";
 
-const router = express.Router();
+import fs from "fs";
+import path from "path";
+import Sequelize from "sequelize";
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || "dev";
+const config = require("../config/config.json")[env];
+const db = {};
 
-const baseUrlV1 = process.env.BASE_URL_V1;
+console.log(config)
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
+}
 
-//Test route to check server status
-router.get(`/`, (req, res) => {
-  res.send({ server: "App online" });
+fs.readdirSync(__dirname)
+  .filter((file) => {
+    return (
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+    );
+  })
+  .forEach((file) => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
 });
 
-//auth & register routes implementations
-router.use(`${baseUrlV1}/auth`, require("./authRoutes"));
-//unauthenticated Common routes
-router.use(`${baseUrlV1}/common`, require("./commonRoutes"));
-//club routes implementations
-router.use(`${baseUrlV1}/club`, checkToken, require("./clubRoutes"));
-//event routes implementation
-router.use(`${baseUrlV1}/events`, checkToken, require("./eventRoutes"));
-//image uploading routes
-router.use(`${baseUrlV1}/image`, checkToken, require("./imageUploadRoutes"));
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-module.exports = router;
+module.exports = db;

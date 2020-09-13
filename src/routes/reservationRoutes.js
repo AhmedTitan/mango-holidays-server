@@ -1,13 +1,11 @@
 import express from "express";
-import authController from '../controllers/authController'
+import propertyController from '../controllers/reservationController'
 
 const router = express.Router(); // Define Express Router
 
 //----------------------Authenticated routes-------------------
 
 // Route implementations
-router.post("/register", authController.register);
-
-router.post("/login", authController.login);
+router.post("/", propertyController.createReservation);
 
 module.exports = router;
