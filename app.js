@@ -1,10 +1,12 @@
 import "dotenv/config";
 import express from "express";
-import indexRouter from './src/routes'
+import indexRouter from "./src/routes";
+import cors from "cors";
 
 const app = express();
 const port = process.env.PORT;
 
+app.use(cors());
 app.use(express.json());
 app.use("/", indexRouter);
 

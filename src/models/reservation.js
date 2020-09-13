@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     bookingStatus: DataTypes.STRING,
     parkingSlot: DataTypes.BOOLEAN,
     checkInTime: DataTypes.STRING,
-    specialNote: DataTypes.STRING
+    specialNote: DataTypes.STRING,
+    pricingOption: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'reservation',

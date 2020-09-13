@@ -3,13 +3,12 @@ import { sendReservationEmail } from "./../helper/emailHelper";
 
 export const createReservation = async (req, res) => {
   try {
-    const {userId} = req.decoded;
+    const { userId } = req.decoded;
     req.body.reservationDetails.userId = userId;
     req.body.reservationDetails.bookingStatus = "confirmed";
     const newEeservation = await models.reservation.create(
       req.body.reservationDetails
     );
-
     req.body.paymentDetails.reservationId = newEeservation.id;
     await models.payment.create(req.body.paymentDetails);
 

@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       month: DataTypes.INTEGER,
       year: DataTypes.INTEGER,
       cvc: DataTypes.INTEGER,
+      totalAmount: DataTypes.FLOAT,
     },
     {
       sequelize,

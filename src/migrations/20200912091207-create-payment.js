@@ -33,6 +33,9 @@ module.exports = {
       cvc: {
         type: Sequelize.INTEGER
       },
+      totalAmount: {
+        type: Sequelize.FLOAT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -40,6 +40,9 @@ module.exports = {
       specialNote: {
         type: Sequelize.STRING
       },
+      pricingOption: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
