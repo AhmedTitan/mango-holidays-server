@@ -8,4 +8,6 @@ const router = express.Router(); // Define Express Router
 // Route implementations
 router.post("/", propertyController.createReservation);
 
+router.get("/availability/:roomId", propertyController.roomAvailability);
+
 module.exports = router;
