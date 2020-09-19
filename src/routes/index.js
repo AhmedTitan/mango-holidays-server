@@ -1,5 +1,4 @@
 import express from "express";
-import { checkToken } from './../middleware/jwtValidation';
 
 const router = express.Router();
 
@@ -15,6 +14,6 @@ router.use(`${baseUrlV1}/auth`, require("./authRoutes"));
 
 router.use(`${baseUrlV1}/property`, require("./propertyRoutes"));
 
-router.use(`${baseUrlV1}/reservation`,checkToken, require("./reservationRoutes"));
+router.use(`${baseUrlV1}/reservation`, require("./reservationRoutes"));
 
 export default router;

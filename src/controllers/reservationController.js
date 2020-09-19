@@ -28,10 +28,11 @@ export const createReservation = async (req, res) => {
     res.status(500).send({ error });
   }
 };
+
 export const roomAvailability = async (req, res) => {
   try {
     const { roomId } = req.params;
-    
+
     const reservationDates = await models.reservation.findAll({
       where: {
         roomId,
@@ -42,7 +43,7 @@ export const roomAvailability = async (req, res) => {
       },
       attributes: ["id", "startDate", "endDate"],
     });
-    
+
     res.send({
       message: "Availability fetched.",
       data: getAllBookedDates(reservationDates),
@@ -53,7 +54,68 @@ export const roomAvailability = async (req, res) => {
   }
 };
 
+export const myBookings = async (req, res) => {
+  try {
+    const { userId } = req.decoded;
+
+    const reservations = await models.reservation.findAll({
+      where: {
+        userId,
+      },
+      include: [
+        {
+          model: models.room,
+          attributes: ["roomName", "amenities", "numberOfGuests"],
+          include: [
+            {
+              model: models.property,
+              attributes: ["propertyName", "imageUrl", "place"],
+            },
+          ],
+        },
+      ],
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "userId", "roomId"],
+      },
+    });
+
+    res.send({
+      message: "Bookings fetched.",
+      data: reservations,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error });
+  }
+};
+
+export const cancelBooking = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await models.reservation.update(
+      {
+        bookingStatus: bookingStatus.CANCELED,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    res.send({
+      message: "Booking Canceled.",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error });
+  }
+};
+
 export default {
   createReservation,
   roomAvailability,
+  myBookings,
+  cancelBooking,
 };
