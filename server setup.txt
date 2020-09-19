@@ -24,9 +24,5 @@ Completed functionalities
 >> Send email after the resevation created.
 >> Sequelize ORM used for the DB models.
 >> Other required routes to fetch property details
-
-
-Pending functionalities
---------------------------------------
+>> Cancellation functionality 
 >> Room availability
->> Cancellation and canellation fee
