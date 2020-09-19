@@ -3,7 +3,7 @@ import sequelize from "sequelize";
 import moment from "moment";
 import { sendReservationEmail } from "./../helper/emailHelper";
 import { bookingStatus, DATE_FORMAT } from "../common/constants";
-import { getAllBookedDates } from "../helper/reservationHelper";
+import { getAllBookedDates, validateAvailability } from "../helper/reservationHelper";
 const { gt, lte, ne, in: opIn, lt } = sequelize.Op;
 
 export const createReservation = async (req, res) => {
@@ -11,6 +11,11 @@ export const createReservation = async (req, res) => {
     const { userId } = req.decoded;
     req.body.reservationDetails.userId = userId;
     req.body.reservationDetails.bookingStatus = bookingStatus.ACTIVE;
+    await validateAvailability(
+      req.body.reservationDetails.roomId,
+      req.body.reservationDetails.startDate,
+      req.body.reservationDetails.endDate
+    );
     const newEeservation = await models.reservation.create(
       req.body.reservationDetails
     );
